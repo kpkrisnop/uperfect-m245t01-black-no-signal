@@ -35,7 +35,7 @@ func externalService() -> IOAVService {
             .takeRetainedValue() as? String
         if loc == "External", let a = IOAVServiceCreateWithService(kCFAllocatorDefault, s)?.takeRetainedValue() { return a }
     }
-    fputs("no external display on a direct USB-C/DP link\n", stderr); exit(1)
+    fputs("no external display on a USB-C/DP link\n", stderr); exit(1)
 }
 let svc = externalService()
 

@@ -89,7 +89,7 @@ sector `0x0EF000` is also all `FF`. Per the main session, banks 13-15 are never 
 
 ## Commands
 
-Project folder, monitor on the direct USB-C link, no other external display. Power-cycle the monitor after **each**
+Project folder, monitor on USB-C (through the dock or direct, not HDMI), no other external display. Power-cycle the monitor after **each**
 `rtd-isp` command and check that it boots.
 
 ```sh

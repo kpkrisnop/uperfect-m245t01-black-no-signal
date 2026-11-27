@@ -42,8 +42,10 @@ Firmware facts (no checksum, flash layout, protection bits, how the blue was fou
 ## How it works: Realtek ISP over USB-C (DisplayPort AUX)
 
 Realtek scalers have an in-system-programming (ISP) slave at I²C address `0x4A`. On this monitor it answers over
-the DisplayPort AUX channel of a **direct USB-C** connection. Apple Silicon Macs can reach it through the private
-`IOAVService` API (the same one `m1ddc` uses for DDC/CI). Docks and HDMI adapters usually block it.
+the DisplayPort AUX channel of a **USB-C (DisplayPort Alt Mode)** connection. Apple Silicon Macs can reach it through
+the private `IOAVService` API (the same one `m1ddc` uses for DDC/CI). It was flashed with the monitor's USB-C plugged
+into a USB-C dock (WS-UTD41-C), which passes the AUX channel through. The same dock's mini-HDMI output blocked DDC,
+so use USB-C, not HDMI.
 
 `tools/rtd-isp.swift` implements:
 
@@ -69,8 +71,9 @@ The protocol comes from [awto-au/awto-ddc](https://github.com/awto-au/awto-ddc) 
 
 ## Recreate it
 
-Needs an Apple Silicon Mac, the monitor on a **direct USB-C cable** to the Mac (Source = Type-C or Auto), and no other
-external display connected. `brew install m1ddc` helps to check the link (`m1ddc get luminance` should answer).
+Needs an Apple Silicon Mac and the monitor on **USB-C** (Source = Type-C or Auto), directly or through a USB-C dock,
+not HDMI. No other external display may be connected. Check the link with `brew install m1ddc` and
+`m1ddc get luminance`: if it answers, DDC gets through and so does ISP.
 
 ```sh
 cd tools
