@@ -16,6 +16,18 @@ the USB-C cable, without opening the monitor.
 > one firmware version. Read the whole README, make a verified backup, and stop if anything differs from what is
 > described. You do this at your own risk.
 
+## Tested setup
+
+| | |
+|---|---|
+| Mac | MacBook Air M4 (Mac16,13), macOS 27.2.1 |
+| Monitor | UPERFECT M245T01, EDID name `J645T37`, OSD firmware OSD_FW_TBD |
+| Video + ISP | Monitor USB-C into a WS-UTD41-C USB-C dock, dock into the Mac (picture, DDC and ISP all on this cable) |
+| Power | Separate 40 W USB power adapter into the monitor's power port |
+| Other displays | None (HDMI unplugged) |
+
+USB-C straight to the Mac works for DDC too. The dock's mini-HDMI output does not pass DDC, so HDMI can't be used.
+
 ## The patch
 
 | | |
@@ -61,7 +73,8 @@ so use USB-C, not HDMI.
 | `byte-program <addr> <value> --i-have-a-backup` | **1 byte** | 1→0-only program, then read back the sector and both neighbours |
 
 Entering ISP **halts the scaler's MCU**. On this chip the ISP reset command does not reboot it, so after every ISP
-command **unplug the monitor's power and USB-C, then plug them back in**. The picture keeps running while it is
+command **unplug the monitor's power and USB-C, then plug them back in** (with power on its own adapter, unplugging
+only the USB-C is not enough). The picture keeps running while it is
 halted. No ISP command writes flash except `byte-program`.
 
 The protocol comes from [awto-au/awto-ddc](https://github.com/awto-au/awto-ddc) (`rtd_isp_probe.py`,
