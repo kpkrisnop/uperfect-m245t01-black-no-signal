@@ -21,7 +21,7 @@ the USB-C cable, without opening the monitor.
 | | |
 |---|---|
 | Mac | MacBook Air M4 (Mac16,13), macOS 27.2.1 |
-| Monitor | UPERFECT M245T01, EDID name `J645T37`, OSD firmware OSD_FW_TBD |
+| Monitor | UPERFECT M245T01, EDID name `J645T37`. The OSD shows no firmware version, so match the bytes at `0x08C5FF` instead |
 | Video + ISP | Monitor USB-C into a WS-UTD41-C USB-C dock, dock into the Mac (picture, DDC and ISP all on this cable) |
 | Power | Separate 40 W USB power adapter into the monitor's power port |
 | Other displays | None (HDMI unplugged) |
