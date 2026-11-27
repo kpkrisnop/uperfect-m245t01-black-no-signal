@@ -1,0 +1,7 @@
+# firmware dumps are unit-specific and copyrighted: never commit them
+*.bin
+firmware/
+ghidra/banks/
+ghidra/out/
+ghidra/project/
+.DS_Store
